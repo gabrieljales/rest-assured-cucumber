@@ -1,0 +1,56 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Rest Assured
+    testImplementation 'io.rest-assured:rest-assured:5.4.0'
+    testImplementation 'io.rest-assured:json-path:5.4.0'
+    testImplementation 'io.rest-assured:json-schema-validator:5.4.0'
+
+    // Cucumber
+    testImplementation 'io.cucumber:cucumber-java:7.15.0'
+    testImplementation 'io.cucumber:cucumber-junit-platform-engine:7.15.0'
+
+    // JUnit Platform Suite
+    testImplementation 'org.junit.platform:junit-platform-suite:1.10.2'
+
+    // Hamcrest (para assertThat)
+    testImplementation 'org.hamcrest:hamcrest:2.2'
+
+    // Jackson para serialização dos objetos
+    testImplementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
+
+    // Lombok
+    testCompileOnly 'org.projectlombok:lombok:1.18.32'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.32'
+}
+
+testing {
+    suites {
+        test {
+            useJUnitJupiter()
+
+            targets {
+                configureEach {
+                    testTask.configure {
+                        // Executa apenas a classe do Runner do Cucumber
+                        include 'api/jsonplaceholder/RunCucumberTest.class'
+
+                        // Forçar execução sempre, evitar up-to-date
+                        outputs.upToDateWhen { false }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
