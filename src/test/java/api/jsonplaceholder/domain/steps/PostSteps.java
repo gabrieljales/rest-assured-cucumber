@@ -11,11 +11,9 @@ public class PostSteps {
         return given()
                     .contentType("application/json")
                     .body(post)
-                    .log().all() // log da requisição
                 .when()
                     .post(endPoint)
                 .then()
-                    .log().all() // log da resposta
                     .extract()
                     .response();
 
