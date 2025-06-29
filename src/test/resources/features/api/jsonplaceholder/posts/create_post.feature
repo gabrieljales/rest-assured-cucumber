@@ -5,3 +5,9 @@ Feature: Criar post na API JSONPlaceholder
     When faço uma requisição POST para "/posts"
     Then a resposta deve retornar o status 201
     And o corpo da resposta deve conter os dados do post criado
+   
+  Scenario:  Criar um post com título vazio
+    Given que eu tenho um post com título vazio
+    When faço uma requisição POST para "/posts"
+    Then a resposta deve retornar o status 201
+    And o corpo da resposta deve conter os dados do post criado

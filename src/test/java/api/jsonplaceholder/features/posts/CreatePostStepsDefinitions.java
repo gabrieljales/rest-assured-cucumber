@@ -18,8 +18,13 @@ public class CreatePostStepsDefinitions {
     private Response response;
 
     @Dado("que eu tenho um novo post válido")
-    public void dadoEuTenhoUmNovoPostValido() {
+    public void dadoQueEuTenhoUmNovoPostValido() {
         newPost = PostFactory.createDefaultPost();
+    }
+
+    @Dado("que eu tenho um post com título vazio")
+    public void dadoQueEuTenhoUmPostComTituloVazio() {
+        newPost = PostFactory.createPostWithCustomFields(2, "", "Corpo do post");
     }
 
     @Quando("faço uma requisição POST para {string}")
